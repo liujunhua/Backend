@@ -1,0 +1,10 @@
+ZYSocket/Android/P2PCLIENT/bin/Debug/P2PCLIENT.dll
+ZYSocket/Android/P2PCLIENT/bin/Debug/P2PCLIENT.dll.mdb
+*.pdb
+*.dll
+*.mdb
+*.cache
+*.txt
+*.exe
+*.stamp
+*.class
