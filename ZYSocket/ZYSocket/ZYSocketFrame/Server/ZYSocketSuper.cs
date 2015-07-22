@@ -25,7 +25,7 @@ namespace ZYSocket.Server
     /// 数据包输入代理
     /// </summary>
     /// <param name="data">输入包</param>
-    /// <param name="socketAsync"></param>
+    /// <param name="socketAsync">socketAsync</param>
     public delegate void BinaryInputHandler(byte[] data, SocketAsyncEventArgs socketAsync);
 
     /// <summary>
