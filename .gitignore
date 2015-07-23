@@ -9,6 +9,3 @@ ZYSocket/Android/P2PCLIENT/bin/Debug/P2PCLIENT.dll.mdb
 *.stamp
 *.class
 ZYSocket/Demo1.1/TestClient/bin/Debug/TestClient.exe.config
-ZYSocket/TalkRPC/Server/bin/Debug/Server.exe.config
-ZYSocket/TalkRPC/Server/bin/Debug/Server.exe.config
-ZYSocket/TalkRPC/Server/bin/Debug/Server.vshost.exe.config
