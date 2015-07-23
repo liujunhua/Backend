@@ -56,7 +56,7 @@
     <Compile Include="Security\DES.cs" />
     <Compile Include="Share\BufferFormat.cs" />
     <Compile Include="Share\BufferFormatV2.cs" />
-    <Compile Include="Share\BuffList.cs" />
+    <Compile Include="Share\BufferList.cs" />
     <Compile Include="Share\CmdToCall.cs" />
     <Compile Include="Share\FormatClassAttibutes.cs" />
     <Compile Include="Share\RConfig.cs" />

@@ -18,7 +18,7 @@ namespace ZYSocket.Share
     /// （通过互联网发送数据包，实际上是将一个较大的包拆分成诺干小包，此类的功能就是讲诺干小包重新组合成完整的数据包）
     /// 此类是线程安全的
     /// </summary>
-    public class BuffList
+    public class BufferList
     {
         public object locklist = new object();
 
@@ -42,7 +42,7 @@ namespace ZYSocket.Share
         /// 数据包组合类
         /// </summary>
         /// <param name="maxSize">数据包有可能出现的最大长度。如果不想服务器被人攻击到内存崩溃请按实际情况设置</param>
-        public BuffList(int maxSize)
+        public BufferList(int maxSize)
         {
             MaxSize = maxSize;
             lengt = -1;

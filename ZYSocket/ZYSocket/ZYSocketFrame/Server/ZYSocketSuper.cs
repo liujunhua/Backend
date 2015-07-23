@@ -401,7 +401,7 @@ namespace ZYSocket.Server
                 {
                     e.AcceptSocket = null;
                     SocketAsynPool.Push(e);
-                    LogOutEvent(null, LogType.Error, "Not Accep");
+                    LogOutEvent(null, LogType.Error, "Not Accept");
                 }
             }
             finally

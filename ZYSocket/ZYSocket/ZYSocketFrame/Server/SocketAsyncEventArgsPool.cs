@@ -15,7 +15,7 @@ namespace ZYSocket.Server
 {
     /// <summary>
     /// Based on example from http://msdn2.microsoft.com/en-us/library/system.net.sockets.socketasynceventargs.socketasynceventargs.aspx
-    /// Represents a collection of reusable SocketAsyncEventArgs objects.  
+    /// Represents a collection of reusable SocketAsyncEventArgs objects.  表示一个可复用的SocketAsyncEventArgs对象的集合
     /// </summary>
     internal sealed class SocketAsyncEventArgsPool
     {
