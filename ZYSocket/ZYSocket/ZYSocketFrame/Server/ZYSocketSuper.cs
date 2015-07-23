@@ -270,9 +270,10 @@ namespace ZYSocket.Server
             {
                 throw new ObjectDisposedException("Server is Disposed");
             }
-            //.NET框架用IPAddress对象来表示一个单一的IP地址
-            //.NET框架用IPEndPoint对象来表示一个特定的IP地址和端口的组合，应用该对象的场景多是在讲socket绑定到本地地址或者将socket绑定到非本地地址。
+            //IPAddress对象用来表示一个单一的IP地址
+            //IPEndPoint对象用来表示一个特定的IP地址和端口的组合，应用该对象的场景多是在讲socket绑定到本地地址或者将socket绑定到非本地地址。
             IPEndPoint myEnd = new IPEndPoint(IPAddress.Any, Port);
+
             if (!Host.Equals("any", StringComparison.CurrentCultureIgnoreCase))
             {
                 if (String.IsNullOrEmpty(Host))
