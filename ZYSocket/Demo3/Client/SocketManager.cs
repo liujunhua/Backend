@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ZYSocket.share;
+using ZYSocket.Share;
 using ZYSocket.ClientA;
 using System.Net.Sockets;
 
@@ -25,7 +25,7 @@ namespace Client
         /// <summary>
         /// 数据包缓冲类
         /// </summary>
-        public static BuffList BuffListManger { get; set; }
+        public static BufferList BuffListManger { get; set; }
 
         /// <summary>
         /// SOCKETCLIENT对象
@@ -35,7 +35,7 @@ namespace Client
         static SocketManager()
         {
             //初始化数据包缓冲区,并设置了最大数据包尽可能的大 
-            BuffListManger = new BuffList(400000); 
+            BuffListManger = new BufferList(400000); 
             client=new SocketClient();
             client.DataOn += new DataOn(client_DataOn);
             client.Disconnection += new ExceptionDisconnection(client_Disconnection);

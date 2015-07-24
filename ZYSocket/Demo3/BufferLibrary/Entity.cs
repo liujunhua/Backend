@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ZYSocket.share;
+using ZYSocket.Share;
 namespace BufferLibrary
 {
     /// <summary>
     /// 用于发送消息
     /// </summary>
     [Serializable] //Demo3.0
-    [FormatClassAttibutes(500)]
+    [FormatClassAttributes(500)]
     public class Message
     {
         /// <summary>
@@ -26,7 +26,7 @@ namespace BufferLibrary
     /// 登入数据包
     /// </summary>
     [Serializable] //Demo3.0
-    [FormatClassAttibutes(1000)]
+    [FormatClassAttributes(1000)]
     public class Login
     {
         /// <summary>
@@ -43,7 +43,7 @@ namespace BufferLibrary
     /// PING 数据包
     /// </summary>
     [Serializable] //Demo3.0
-    [FormatClassAttibutes(800)]
+    [FormatClassAttributes(800)]
     public class Ping
     {
         /// <summary>
@@ -70,7 +70,7 @@ namespace BufferLibrary
     /// 读取DATASET请求
     /// </summary>  
     [Serializable]  //Demo3.0
-    [FormatClassAttibutes(1002)]
+    [FormatClassAttributes(1002)]
     public class ReadDataSet
     {
         public string TableName { get; set; }

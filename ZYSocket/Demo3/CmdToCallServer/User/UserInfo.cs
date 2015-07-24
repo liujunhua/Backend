@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ZYSocket.share;
+using ZYSocket.Share;
 
 namespace Server.User
 {
@@ -10,11 +10,11 @@ namespace Server.User
     public class UserInfo
     {
         public string UserName { get; set; }
-        public BuffList BuffManger { get; set; }
+        public BufferList BuffManger { get; set; }
 
         public UserInfo()
         {
-            BuffManger = new BuffList(RConfig.ReadInt("MaxBuffSize"));
+            BuffManger = new BufferList(RConfig.ReadInt("MaxBufferSize"));
         }
     }
 }

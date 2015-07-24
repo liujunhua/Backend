@@ -18,8 +18,6 @@ namespace Server
         static void Main(string[] args)
         {
             service.RegModule(new TalkService()); //添加ITest
-        
-
             server.BinaryInput = new BinaryInputHandler(BinaryInputHandler); //设置输入代理
             server.Connetions = new ConnectionFilter(ConnectionFilter); //设置连接代理
             server.MessageInput = new MessageInputHandler(MessageInputHandler); //设置 客户端断开
@@ -34,13 +32,10 @@ namespace Server
             try
             {
                 Console.WriteLine(message);
-
                 service.Disconnect(socketAsync); //注意释放下 RPC
-
                 socketAsync.UserToken = null;
                 socketAsync.AcceptSocket.Close();
                 socketAsync.AcceptSocket.Dispose();
-
             }
             catch (Exception er)
             {
@@ -68,11 +63,8 @@ namespace Server
 
             try
             {               
-
                 UserInfo user = socketAsync.UserToken as UserInfo; //最新的数据包整合类
-
                 user.Stream.Write(data);
-
                 byte[] datax;
                 while (user.Stream.Read(out datax))
                 {
@@ -83,7 +75,6 @@ namespace Server
             {
                 Console.WriteLine(er.ToString());
             }
-
         }
 
         static void DataOn(byte[] data, SocketAsyncEventArgs e)

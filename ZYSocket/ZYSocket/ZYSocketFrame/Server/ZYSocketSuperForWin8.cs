@@ -288,7 +288,7 @@ namespace ZYSocket.Server
             SendTimeout = 1000;
             ReceiveTimeout = 1000;
             bufferManager = new BufferManager(MaxConnectCout * MaxBufferSize, MaxBufferSize);
-            bufferManager.Inint();
+            bufferManager.Init();
             SocketAsynPool = new SocketAsyncEventArgsPool(MaxConnectCout);
             for (int i = 0; i < MaxConnectCout; i++)
             {

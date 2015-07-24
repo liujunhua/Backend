@@ -42,14 +42,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="ZYSocketClientA, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\北风之神SOCKET框架(ZYSocket)DLL\ZYSocketClientA.dll</HintPath>
-    </Reference>
-    <Reference Include="ZYSocketShare, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\北风之神SOCKET框架(ZYSocket)DLL\ZYSocketShare.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FormClient.cs">
@@ -94,6 +86,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ZYSocket\ZYSocketClientA\ZYSocketClientA.csproj">
+      <Project>{22612b8f-73ce-4dfc-9c65-2de6a1558004}</Project>
+      <Name>ZYSocketClientA</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ZYSocket\ZYSocketShare\ZYSocketShare.csproj">
+      <Project>{462cc05c-ae20-448c-8522-d724b858b685}</Project>
+      <Name>ZYSocketShare</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BufferLibrary\BufferLibrary.csproj">
       <Project>{a56fe9c7-e059-45b8-a17b-a2c9e2a1d7db}</Project>
       <Name>BufferLibrary</Name>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ZYSocket.Server;
-using ZYSocket.share;
+using ZYSocket.Share;
 using System.Net.Sockets;
 using BufferLibrary;
 

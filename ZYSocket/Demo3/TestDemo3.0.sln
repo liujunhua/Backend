@@ -11,6 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BufferLibrary", "BufferLibr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CmdToCallServer", "CmdToCallServer\CmdToCallServer.csproj", "{6076D9D3-D8B4-4B9A-8381-0EF364953176}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZYSocketShare", "..\ZYSocket\ZYSocketShare\ZYSocketShare.csproj", "{462CC05C-AE20-448C-8522-D724B858B685}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZYSocketClientA", "..\ZYSocket\ZYSocketClientA\ZYSocketClientA.csproj", "{22612B8F-73CE-4DFC-9C65-2DE6A1558004}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZYSocketFrame", "..\ZYSocket\ZYSocketFrame\ZYSocketFrame.csproj", "{69FDF1FC-9018-4A1D-A739-39A7230C25D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +67,36 @@ Global
 		{6076D9D3-D8B4-4B9A-8381-0EF364953176}.Release|Mixed Platforms.Build.0 = Release|x86
 		{6076D9D3-D8B4-4B9A-8381-0EF364953176}.Release|x86.ActiveCfg = Release|x86
 		{6076D9D3-D8B4-4B9A-8381-0EF364953176}.Release|x86.Build.0 = Release|x86
+		{462CC05C-AE20-448C-8522-D724B858B685}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{462CC05C-AE20-448C-8522-D724B858B685}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{462CC05C-AE20-448C-8522-D724B858B685}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{462CC05C-AE20-448C-8522-D724B858B685}.Debug|x86.ActiveCfg = Debug|x86
+		{462CC05C-AE20-448C-8522-D724B858B685}.Debug|x86.Build.0 = Debug|x86
+		{462CC05C-AE20-448C-8522-D724B858B685}.Release|Any CPU.ActiveCfg = Release|x86
+		{462CC05C-AE20-448C-8522-D724B858B685}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{462CC05C-AE20-448C-8522-D724B858B685}.Release|Mixed Platforms.Build.0 = Release|x86
+		{462CC05C-AE20-448C-8522-D724B858B685}.Release|x86.ActiveCfg = Release|x86
+		{462CC05C-AE20-448C-8522-D724B858B685}.Release|x86.Build.0 = Release|x86
+		{22612B8F-73CE-4DFC-9C65-2DE6A1558004}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{22612B8F-73CE-4DFC-9C65-2DE6A1558004}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{22612B8F-73CE-4DFC-9C65-2DE6A1558004}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{22612B8F-73CE-4DFC-9C65-2DE6A1558004}.Debug|x86.ActiveCfg = Debug|x86
+		{22612B8F-73CE-4DFC-9C65-2DE6A1558004}.Debug|x86.Build.0 = Debug|x86
+		{22612B8F-73CE-4DFC-9C65-2DE6A1558004}.Release|Any CPU.ActiveCfg = Release|x86
+		{22612B8F-73CE-4DFC-9C65-2DE6A1558004}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{22612B8F-73CE-4DFC-9C65-2DE6A1558004}.Release|Mixed Platforms.Build.0 = Release|x86
+		{22612B8F-73CE-4DFC-9C65-2DE6A1558004}.Release|x86.ActiveCfg = Release|x86
+		{22612B8F-73CE-4DFC-9C65-2DE6A1558004}.Release|x86.Build.0 = Release|x86
+		{69FDF1FC-9018-4A1D-A739-39A7230C25D2}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{69FDF1FC-9018-4A1D-A739-39A7230C25D2}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{69FDF1FC-9018-4A1D-A739-39A7230C25D2}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{69FDF1FC-9018-4A1D-A739-39A7230C25D2}.Debug|x86.ActiveCfg = Debug|x86
+		{69FDF1FC-9018-4A1D-A739-39A7230C25D2}.Debug|x86.Build.0 = Debug|x86
+		{69FDF1FC-9018-4A1D-A739-39A7230C25D2}.Release|Any CPU.ActiveCfg = Release|x86
+		{69FDF1FC-9018-4A1D-A739-39A7230C25D2}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{69FDF1FC-9018-4A1D-A739-39A7230C25D2}.Release|Mixed Platforms.Build.0 = Release|x86
+		{69FDF1FC-9018-4A1D-A739-39A7230C25D2}.Release|x86.ActiveCfg = Release|x86
+		{69FDF1FC-9018-4A1D-A739-39A7230C25D2}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

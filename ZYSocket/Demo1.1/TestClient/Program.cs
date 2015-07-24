@@ -35,18 +35,18 @@ namespace TestClient
                     client.SendTo(BufferFormat.FormatFCA(temp));  //将一个PPO对象发送出去
                     // Console.ReadLine();
 
-                    BufferFormat buffmat = new BufferFormat(1001);
-                    buffmat.AddItem(2);
-                    buffmat.AddItem("通过组合数据包通讯，GUID is object");
-                    buffmat.AddItem(Guid.NewGuid());
-                    client.SendTo(buffmat.Finish()); //用组合数据包模拟PPO对象
+                    //BufferFormat buffmat = new BufferFormat(1001);
+                    //buffmat.AddItem(2);
+                    //buffmat.AddItem("通过组合数据包通讯，GUID is object");
+                    //buffmat.AddItem(Guid.NewGuid());
+                    //client.SendTo(buffmat.Finish()); //用组合数据包模拟PPO对象
                     // Console.ReadLine();
 
-                    BufferFormat buffmat2 = new BufferFormat(1002);
-                    buffmat2.AddItem(3);
-                    buffmat2.AddItem("通过组合数据包通讯 all buff");
-                    buffmat2.AddItem(Guid.NewGuid().ToString());
-                    client.SendTo(buffmat2.Finish()); //用组合数据包模拟PPO对象 但GUID 是字符串类型
+                    //BufferFormat buffmat2 = new BufferFormat(1002);
+                    //buffmat2.AddItem(3);
+                    //buffmat2.AddItem("通过组合数据包通讯 all buff");
+                    //buffmat2.AddItem(Guid.NewGuid().ToString());
+                    //client.SendTo(buffmat2.Finish()); //用组合数据包模拟PPO对象 但GUID 是字符串类型
                 }
             }
             else

@@ -31,7 +31,7 @@ namespace ZYSocket.Server
             this.bufferSize = buffersize;    
         }
 
-        public void Inint()
+        public void Init()
         {
             buffer = new byte[numSize];
             freeIndexPool = new Stack<int>(numSize / bufferSize);

@@ -238,7 +238,10 @@ namespace TestServer
                             break;
                         case 1003:
                             {
-                                server.SendData(e.AcceptSocket, data);
+                                #region 第八步：发送数据
+                                 server.SendData(e.AcceptSocket, data);
+                                #endregion
+                               
                             }
                             break;
                         #region Demo1.3

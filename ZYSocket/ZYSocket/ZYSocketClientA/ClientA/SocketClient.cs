@@ -58,9 +58,8 @@ namespace ZYSocket.ClientA
         /// <param name="port"></param>
         public void BeginConnectionTo(string host, int port)
         {
-            IPEndPoint myEnd = null;
-
             #region IPFormat
+            IPEndPoint myEnd = null;
             try
             {
                 myEnd = new IPEndPoint(IPAddress.Parse(host), port);
@@ -81,6 +80,10 @@ namespace ZYSocket.ClientA
             SocketAsyncEventArgs e = new SocketAsyncEventArgs();
             e.RemoteEndPoint = myEnd;
             e.Completed += new EventHandler<SocketAsyncEventArgs>(e_Completed);
+            //开始一个对远程主机连接的异步请求
+            //如果 I/O 操作挂起，将返回 true。操作完成时，将引发 context 参数的 System.Net.Sockets.SocketAsyncEventArgs.Completed事件。 
+            //如果 I/O 操作同步完成，将返回 false。在这种情况下，将不会引发 context 参数的 System.Net.Sockets.SocketAsyncEventArgs.Completed事件，
+            //并且可能在方法调用返回后立即检查作为参数传递的 context 对象以检索操作的结果。
             if (!clientSocket.ConnectAsync(e))
             {
                 eCompleted(e);

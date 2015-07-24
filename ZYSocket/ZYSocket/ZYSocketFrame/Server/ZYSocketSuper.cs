@@ -235,13 +235,18 @@ namespace ZYSocket.Server
 
         public ZYSocketSuper()
         {
+            #region 第一步：初始化（主机、端口、最大缓存、最大连接）
             this.Port = IPConfig.ReadInt("Port");
             this.Host = IPConfig.ReadString("Host");
             this.MaxBufferSize = IPConfig.ReadInt("MaxBufferSize");
             this.MaxConnectionCount = IPConfig.ReadInt("MaxConnectionCount");
+            #endregion
 
             //定义一个AutoResetEvent数组,WaitHandle.WaitAll方法只收WaitHandle[]参数(数组)
             this.reset = new System.Threading.AutoResetEvent[1];
+            //可以通过将一个布尔值传递给构造函数来控制 AutoResetEvent 的初始状态，如果初始状态为终止状态，则为 true；否则为 false。
+            //如果 AutoResetEvent 处于非终止状态，则该线程阻塞，并等待当前控制资源的线程通过调用 Set 发出资源可用的信号。调用 Set 向 AutoResetEvent 发信号以释放等待线程
+            //AutoResetEvent 将保持终止状态，直到一个正在等待的线程被释放，然后自动返回非终止状态。如果没有任何线程在等待，则状态将无限期地保持为终止状态。
             reset[0] = new System.Threading.AutoResetEvent(false);
 
             this.Run();
@@ -270,6 +275,7 @@ namespace ZYSocket.Server
             {
                 throw new ObjectDisposedException("Server is Disposed");
             }
+            #region 第二步：创建终结点（EndPoint）
             //IPAddress对象用来表示一个单一的IP地址
             //IPEndPoint对象用来表示一个特定的IP地址和端口的组合，应用该对象的场景多是在讲socket绑定到本地地址或者将socket绑定到非本地地址。
             IPEndPoint myEnd = new IPEndPoint(IPAddress.Any, Port);
@@ -309,6 +315,9 @@ namespace ZYSocket.Server
                 }
             }
 
+            #endregion
+
+            #region 第三步：创建socket
             sock = new Socket(myEnd.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
             sock.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, 1);
 
@@ -323,14 +332,20 @@ namespace ZYSocket.Server
                 sock.IOControl(IOControlCode.KeepAliveValues, inOptionValues, null);
                 //-------------------------
             }
+            #endregion
 
+            #region 第四步：绑定终结点（EndPoint）对像
             sock.Bind(myEnd);
+            #endregion
+
+            #region 第五步：开始监听
             sock.Listen(20);
-            SendTimeout = 1000;
-            ReceiveTimeout = 1000;
+            #endregion
+            //SendTimeout = 1000;
+            //ReceiveTimeout = 1000;
 
             bufferManager = new BufferManager(MaxConnectionCount * MaxBufferSize, MaxBufferSize);
-            bufferManager.Inint();
+            bufferManager.Init();
 
             SocketAsynPool = new SocketAsyncEventArgsPool(MaxConnectionCount);
             for (int i = 0; i < MaxConnectionCount; i++)
@@ -340,11 +355,15 @@ namespace ZYSocket.Server
                 SocketAsynPool.Push(socketasyn);
             }
 
+            #region 第六步：建立连接
             this.Accept();
+            #endregion
+
         }
 
         public void Start()
         {
+            //(发出信号)将事件状态设置为终止状态，允许一个或多个等待线程继续。
             reset[0].Set();
         }
 
@@ -358,7 +377,7 @@ namespace ZYSocket.Server
             if (SocketAsynPool.Count > 0)
             {
                 SocketAsyncEventArgs sockasyn = SocketAsynPool.Pop();
-                //开始一个异步操作来接受一个传入的连接操作
+                //开始一个异步操作来接受一个传入的连接操作, //在链接过来的时候，如果IO没有挂起，则AcceptAsync为False，表明同步完成。
                 if (!Sock.AcceptAsync(sockasyn))
                 {
                     BeginAccept(sockasyn);
@@ -376,8 +395,9 @@ namespace ZYSocket.Server
             {
                 if (e.SocketError == SocketError.Success)
                 {
-                    //调用WaitHandle的方法来阻塞当前线程，当前方法是当所有异步对象接到信号时退出阻塞
+                    //调用WaitHandle的方法来阻塞当前线程，当前方法是当所有异步对象接到信号（reset[i].Set()）时退出阻塞
                     System.Threading.WaitHandle.WaitAll(reset);
+                    //(发出信号)将事件状态设置为终止状态，允许一个或多个等待线程继续。
                     reset[0].Set();
                     if (this.Connetions != null)
                     {
@@ -471,7 +491,10 @@ namespace ZYSocket.Server
                     BeginAccept(e);
                     break;
                 case SocketAsyncOperation.Receive:
+                    #region 第七步：从客户端接受信息
                     BeginReceive(e);
+                    #endregion
+                    
                     break;
             }
         }

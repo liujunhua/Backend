@@ -15,13 +15,11 @@ namespace ZYSocket.RPC.Server
     public class RPCService
     {
 
-
-
         public ConcurrentDictionary<string, object> ModuleDiy { get; set; }
-
 
         public RPCService()
         {
+            //ConcurrentDictionary表示可由多个线程同时访问的键值对的线程安全集合。
             ModuleDiy = new ConcurrentDictionary<string, object>();
         }
 
@@ -32,9 +30,6 @@ namespace ZYSocket.RPC.Server
             ModuleDiy.AddOrUpdate(type.FullName, o, (a, b) => o);
 
         }
-
-
-
 
         /// <summary>
         /// 调用模块
@@ -64,7 +59,7 @@ namespace ZYSocket.RPC.Server
                                 object returnValue;
 
                                 CallContext.SetData("Current", e);
-                             
+
                                 if (RunModule(tmp, out returnValue))
                                 {
 
@@ -108,9 +103,9 @@ namespace ZYSocket.RPC.Server
                 if (type.BaseType == typeof(RPCObject))
                 {
                     type.GetMethod("ClientDisconnect").Invoke(item, new[] { e });
-                  
+
                 }
-                
+
             }
         }
 
@@ -121,32 +116,23 @@ namespace ZYSocket.RPC.Server
             if (ModuleDiy.ContainsKey(tmp.CallModule))
             {
                 object o = ModuleDiy[tmp.CallModule];
-
                 Type _type = o.GetType();
-
                 object[] arguments = new object[tmp.Arguments.Count];
-
                 Type[] argumentstype = new Type[tmp.Arguments.Count];
-
                 for (int i = 0; i < tmp.Arguments.Count; i++)
                 {
                     argumentstype[i] = Type.GetType(tmp.ArgumentsType[i]);
                     arguments[i] = MsgPack.Serialization.SerializationContext.Default.GetSerializer(argumentstype[i]).UnpackSingleObject(tmp.Arguments[i]);
                 }
-                
-
                 var method = _type.GetMethod(tmp.Method, argumentstype);
-
                 if (method != null)
                 {
                     returnValue = method.Invoke(o, arguments);
-
                     return true;
                 }
                 else
                 {
                     var methods = _type.GetMethods();
-
                     foreach (var item in methods)
                     {
                         if (item.Name == tmp.Method)
@@ -173,21 +159,15 @@ namespace ZYSocket.RPC.Server
                                     {
                                         tmp.Arguments[i] = MsgPack.Serialization.SerializationContext.Default.GetSerializer(arguments[i].GetType()).PackSingleObject(arguments[i]);
                                     }
-
                                     return true;
                                 }
                             }
                         }
                     }
-
                 }
             }
-
-
             return false;
         }
-
-
 
     }
 }
