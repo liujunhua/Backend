@@ -78,7 +78,7 @@ namespace Client
             Login temp = new Login() //发送一个登入数据包
             {
                 UserName = this.txtUserName.Text,
-                PassWord = this.txtPassword.Text
+                Password = this.txtPassword.Text
             };
             //SocketManager.client.SendTo(BufferFormat.FormatFCA(temp));Demo2.0
             SocketManager.client.SendTo(BufferFormat.FormatFCA(temp, (pdata) => DES.EncryptDES(pdata, keys, "------TEST------")));

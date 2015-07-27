@@ -52,7 +52,7 @@ namespace Server
             {
                 if (p != null)
                 {
-                    if (User.UserManger.GetUserDataManger().CheckUser(p.UserName, p.PassWord))//检查用户名密码是否正确
+                    if (User.UserManger.GetUserDataManger().CheckUser(p.UserName, p.Password))//检查用户名密码是否正确
                     {
                         User.UserInfo user = new User.UserInfo() //建立一个新的用户对象 并且初始化 用户名
                         {
