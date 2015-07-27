@@ -14,7 +14,7 @@ namespace Client
     /// <summary>
     /// 登入界面
     /// </summary>
-    public partial class Login : Form
+    public partial class FormLogin : Form
     {
         /// <summary>
         /// 登入成功为TRUE
@@ -22,17 +22,17 @@ namespace Client
         public bool Logins { get; set; }
         byte[] keys = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };//Demo3.0
 
-        public Login()
+        public FormLogin()
         {
             //注册数据包输入事件
             SocketManager.DataInput += new ZYSocket.ClientA.DataOn(SocketManager_DataInput);
             InitializeComponent();
             //测试关闭事件
-            this.Closed += new EventHandler(LogOn_Closed);
+            this.Closed += new EventHandler(FormLogin_Closed);
             Logins = false;
         }
 
-        void LogOn_Closed(object sender, EventArgs e)
+        void FormLogin_Closed(object sender, EventArgs e)
         {
             //删除数据包输入事件
             SocketManager.DataInput -= new ZYSocket.ClientA.DataOn(SocketManager_DataInput);
@@ -77,8 +77,8 @@ namespace Client
         {
             Login temp = new Login() //发送一个登入数据包
             {
-                UserName = this.textBox1.Text,
-                PassWord = this.textBox2.Text
+                UserName = this.txtUserName.Text,
+                PassWord = this.txtPassword.Text
             };
             //SocketManager.client.SendTo(BufferFormat.FormatFCA(temp));Demo2.0
             SocketManager.client.SendTo(BufferFormat.FormatFCA(temp, (pdata) => DES.EncryptDES(pdata, keys, "------TEST------")));

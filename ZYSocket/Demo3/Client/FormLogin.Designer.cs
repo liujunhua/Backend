@@ -1,6 +1,6 @@
 ﻿namespace Client
 {
-    partial class Login
+    partial class FormLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -30,9 +30,9 @@
         {
             this.btnLogin = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtUserName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnLogin
@@ -54,12 +54,12 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "用户名：";
             // 
-            // textBox1
+            // txtUserName
             // 
-            this.textBox1.Location = new System.Drawing.Point(83, 24);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(148, 21);
-            this.textBox1.TabIndex = 2;
+            this.txtUserName.Location = new System.Drawing.Point(83, 24);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(148, 21);
+            this.txtUserName.TabIndex = 2;
             // 
             // label2
             // 
@@ -70,26 +70,26 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "密  码：";
             // 
-            // textBox2
+            // txtPassword
             // 
-            this.textBox2.Location = new System.Drawing.Point(83, 60);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PasswordChar = '*';
-            this.textBox2.Size = new System.Drawing.Size(148, 21);
-            this.textBox2.TabIndex = 4;
+            this.txtPassword.Location = new System.Drawing.Point(83, 60);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(148, 21);
+            this.txtPassword.TabIndex = 4;
             // 
-            // LogOn
+            // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(277, 141);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "LogOn";
+            this.Name = "FormLogin";
             this.Text = "登录";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -100,8 +100,8 @@
 
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtPassword;
     }
 }

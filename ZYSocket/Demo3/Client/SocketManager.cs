@@ -25,7 +25,7 @@ namespace Client
         /// <summary>
         /// 数据包缓冲类
         /// </summary>
-        public static BufferList BuffListManger { get; set; }
+        public static BufferList BufferListManger { get; set; }
 
         /// <summary>
         /// SOCKETCLIENT对象
@@ -35,7 +35,7 @@ namespace Client
         static SocketManager()
         {
             //初始化数据包缓冲区,并设置了最大数据包尽可能的大 
-            BuffListManger = new BufferList(400000); 
+            BufferListManger = new BufferList(400000); 
             client=new SocketClient();
             client.DataOn += new DataOn(client_DataOn);
             client.Disconnection += new ExceptionDisconnection(client_Disconnection);
@@ -50,7 +50,7 @@ namespace Client
         static void client_DataOn(byte[] Data)
         {
             List<byte[]> datax;
-            if (BuffListManger.InsertByteArray(Data, 4, out datax)) //整理从服务器上收到的数据包
+            if (BufferListManger.InsertByteArray(Data, 4, out datax)) //整理从服务器上收到的数据包
             {
                 if (DataInput != null)
                     foreach(byte[] mdata in datax)
