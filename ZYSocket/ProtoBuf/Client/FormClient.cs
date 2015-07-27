@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using ZYSocket.share;
+using ZYSocket.Share;
 using ZYSocket.ClientA;
 using System.Net.Sockets;
 using Pack;
@@ -32,8 +32,8 @@ namespace Client
             #endregion
 
             #region Demo8.0 Protobuf
-            ReadBytesV2.ObjFormatType = BuffFormatType.protobuf;
-            BufferFormatV2.ObjFormatType = BuffFormatType.protobuf;
+            ReadBytesV2.ObjFormatType = BufferFormatType.protobuf;
+            BufferFormatV2.FormatType = BufferFormatType.protobuf;
             #endregion
 
             if (SocketManager.client.ConnectionTo(RConfig.ReadString("Host"), RConfig.ReadInt("Port"))) //连接到服务器

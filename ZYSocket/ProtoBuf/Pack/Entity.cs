@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ZYSocket.share;
+using ZYSocket.Share;
 using ProtoBuf;
 
 namespace Pack
@@ -18,7 +18,7 @@ namespace Pack
 
 
     [ProtoContract] //Demo8.0 Protobuf
-    [FormatClassAttibutes((int)PackType.LogOn)]
+    [FormatClassAttributes((int)PackType.LogOn)]
     public class Logon
     {
         // [MessagePackMember(0)] //Demo7.0 MsgPack
@@ -31,7 +31,7 @@ namespace Pack
     }
 
     [ProtoContract] //Demo8.0 Protobuf
-    [FormatClassAttibutes((int)PackType.LogOnRes)]
+    [FormatClassAttributes((int)PackType.LogOnRes)]
     public class LogonRes
     {
         // [MessagePackMember(0)] //Demo7.0 MsgPack
@@ -44,7 +44,7 @@ namespace Pack
     }
 
     [ProtoContract]//Demo8.0 Protobuf
-    [FormatClassAttibutes((int)PackType.Data)]
+    [FormatClassAttributes((int)PackType.Data)]
     public class Data
     {
         // [MessagePackMember(0)] //Demo7.0 MsgPack
@@ -53,7 +53,7 @@ namespace Pack
     }
 
     [ProtoContract] //Demo8.0 Protobuf
-    [FormatClassAttibutes((int)PackType.DataRes)]
+    [FormatClassAttributes((int)PackType.DataRes)]
     public class DataRes
     {
         // [MessagePackMember(0)] //Demo7.0 MsgPack

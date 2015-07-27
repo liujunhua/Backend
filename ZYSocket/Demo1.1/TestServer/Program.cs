@@ -166,11 +166,11 @@ namespace TestServer
         //        //注意这里为了 简单 所以就绑定了个 BuffList 类，本来这里应该绑定用户类对象，
         //        //并在用户类里面建立 初始化 一个 BuffList 类，这样就能通过用户类保存更多的信息了。
         //        //比如用户名，权限等等
-        //        socketAsync.UserToken = new BuffList(409000);
+        //        socketAsync.UserToken = new BufferList(409000);
         //    }
 
         //    //BuffList 数据包组合类 如果不想丢数据就用这个类吧
-        //    BuffList buff = socketAsync.UserToken as BuffList;
+        //    BufferList buff = socketAsync.UserToken as BufferList;
 
         //    List<byte[]> datax;
 
@@ -195,10 +195,10 @@ namespace TestServer
                 //建立一个读取数据包的类 参数是数据包
                 //这个类的功能很强大,可以读取数据包的数据,并可以把你发送过来的对象数据,转换对象引用
                 ReadBytes read = new ReadBytes(data);
-                int lengt; //数据包长度,用于验证数据包的完整性
+                int length; //数据包长度,用于验证数据包的完整性
                 int cmd; //数据包命令类型
                 //注意这里一定要这样子写,这样子可以保证所有你要度的数据是完整的,如果读不出来 Raed方法会返回FALSE,从而避免了错误的数据导致崩溃
-                if (read.ReadInt32(out lengt) && read.Length == lengt && read.ReadInt32(out cmd))
+                if (read.ReadInt32(out length) && read.Length == length && read.ReadInt32(out cmd))
                 {
                     //read.Read系列函数是不会产生异常的
                     //根据命令读取数据包

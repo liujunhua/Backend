@@ -38,9 +38,9 @@ namespace ZYSocket.Share
         }
 
 
-        protected override void CheckHeadLengt()
+        protected override void CheckHeadLength()
         {
-            if (_headlengt == -1)
+            if (_headLength == -1)
             {
             //int num = (_length - _pw);
             //if (HeadBit > num)
@@ -75,12 +75,12 @@ namespace ZYSocket.Share
 
                     if (res > MaxSize)
                     {
-                        this._headlengt = -1;
+                        this._headLength = -1;
                         RestPostion();
                         return;
                     }
 
-                    this._headlengt = (int)res;
+                    this._headLength = (int)res;
 
                 }
                 else

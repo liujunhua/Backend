@@ -57,26 +57,19 @@ namespace ZYSocket.Share
             Interlocked.Exchange(ref Vlent, 0);
             Interlocked.Exchange(ref current, 0);
             ByteList.Clear();
-           
         }
-
-
 
         public bool InsertByteArray(byte[] Data, int ml, out List<byte[]> datax)
         {
             lock (locklist)
             {
                 datax = new List<byte[]>();
-
                 ByteList.AddRange(Data);
-
                 Interlocked.Add(ref Vlent, Data.Length);
-
 
                 if (lengt == -1 && Vlent > ml)
                 {
                     int res = 0;
-
                     for (int i = 0; i < ml; i++)
                     {
                         int temp = ((int)ByteList[current + i]) & 0xff;
@@ -89,21 +82,18 @@ namespace ZYSocket.Share
                         Reset();
                         throw new Exception("数据包大于预设长度，如果你传入的数据比较大，请设置重新 maxSize 值");
                     }
-
                     if (res <= 0)
                     {
                         Reset();
 
                         return false;
                     }
-
                     Interlocked.Exchange(ref lengt, res);
                 }
 
 
                 if ((Vlent - current) >= lengt)
                 {
-
                     int lengx = lengt;
                     Interlocked.Exchange(ref lengt, -1);
 
@@ -112,16 +102,12 @@ namespace ZYSocket.Share
                     datax.Add(data);
 
                     Interlocked.Add(ref current, lengx);
-
-
                 recopy:
-
                     if (current == ByteList.Count)
                     {
                         Reset();
                         return true;
                     }
-
                     if (ByteList.Count - current > ml)
                     {
                         int res = 0;
@@ -131,19 +117,16 @@ namespace ZYSocket.Share
                             temp <<= i * 8;
                             res = temp + res;
                         }
-
                         if (res > MaxSize)
                         {
                             Reset();
                             throw new Exception("数据包大于预设长度，如果你传入的数据比较大，请设置重新 maxSize 值");
                         }
-
                         if (res <= 0)
                         {
                             Reset();
                             return true;
                         }
-
                         if (ByteList.Count - current < res)
                         {
                             return true;
@@ -151,9 +134,7 @@ namespace ZYSocket.Share
                         data = new byte[res];
                         ByteList.CopyTo(current, data, 0, res);
                         datax.Add(data);
-
                         Interlocked.Add(ref current, res);
-
                         goto recopy;
                     }
 
@@ -164,8 +145,6 @@ namespace ZYSocket.Share
                     return false;
                 }
             }
-
         }
-
     }
 }

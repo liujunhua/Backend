@@ -493,8 +493,7 @@ namespace ZYSocket.Server
                 case SocketAsyncOperation.Receive:
                     #region 第七步：从客户端接受信息
                     BeginReceive(e);
-                    #endregion
-                    
+                    #endregion  
                     break;
             }
         }

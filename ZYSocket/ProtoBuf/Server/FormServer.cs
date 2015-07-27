@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ZYSocket.Server;
-using ZYSocket.share;
+using ZYSocket.Share;
 using System.Net;
 using System.Net.Sockets;
 using Pack;
@@ -28,8 +28,8 @@ namespace Server
             #endregion
 
             #region Demo8.0 Protobuf
-            ReadBytesV2.ObjFormatType = BuffFormatType.protobuf;
-            BufferFormatV2.ObjFormatType = BuffFormatType.protobuf;
+            ReadBytesV2.ObjFormatType = BufferFormatType.protobuf;
+            BufferFormatV2.FormatType = BufferFormatType.protobuf;
             #endregion
 
             server = new ZYSocketSuper();

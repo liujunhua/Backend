@@ -21,9 +21,9 @@ namespace ZYSocket.Share
         protected bool _canRead = false;
         protected bool _canWrile = false;
         protected int _position;
-        protected int _headlengt;
+        protected int _headLength;
         protected int _pw;
-        protected int _SpLengt;
+        protected int _SpLength;
 
         protected override void Dispose(bool disposing)
         {
@@ -113,11 +113,11 @@ namespace ZYSocket.Share
         {
             get
             {
-                return _headlengt;
+                return _headLength;
             }
             set
             {
-                _headlengt = value;
+                _headLength = value;
             }
         }
 
@@ -146,9 +146,9 @@ namespace ZYSocket.Share
             _canRead = true;
             _canWrile = true;
             HeadBit = headBit;
-            _headlengt = -1;
+            _headLength = -1;
             _position = 0;
-            _SpLengt = maxSize * 64;
+            _SpLength = maxSize * 64;
         }
 
 
@@ -185,7 +185,7 @@ namespace ZYSocket.Share
             _length = 0;
             _canRead = true;
             _canWrile = true;
-            _headlengt = -1;
+            _headLength = -1;
             _position = 0;
             _pw = 0;
         }
@@ -391,15 +391,15 @@ namespace ZYSocket.Share
                     return false;
                 try
                 {
-                    CheckHeadLengt();
+                    CheckHeadLength();
                 }
                 catch (ArgumentOutOfRangeException)
                 {
                     this.Flush();
                 }
-                if (_headlengt == -1)
+                if (_headLength == -1)
                     return false;
-                return (_pw + _headlengt) <= _position;
+                return (_pw + _headLength) <= _position;
             }
         }
 
@@ -409,7 +409,6 @@ namespace ZYSocket.Share
             {
                 throw new NotSupportedException("此数据流限制写入");
             }
-            //CheckHeadLength(data);
             Write(data, 0, data.Length);
         }
 
@@ -447,9 +446,9 @@ namespace ZYSocket.Share
             _length = 0;
         }
 
-        protected virtual void CheckHeadLengt()
+        protected virtual void CheckHeadLength()
         {
-            if (_headlengt == -1)
+            if (_headLength == -1)
             {
                 int num = (_length - _pw);
                 if (HeadBit > num)
@@ -460,6 +459,10 @@ namespace ZYSocket.Share
                 for (int i = 0; i < HeadBit; i++)
                 {
                     int temp = ((int)Datas[this._pw + i]) & 0xff;
+                    //a<<=n
+                    //等价于a=a<<n
+                    //a<<n表示a左移n位(二进制)
+                    //等价于a乘以2的n次方 
                     temp <<= i * 8;
                     res = temp + res;
                 }
@@ -469,7 +472,7 @@ namespace ZYSocket.Share
                     {
                         throw new ArgumentOutOfRangeException("数据包大于预设长度，如果你传入的数据比较大，请设置重新 maxSize 值");
                     }
-                    this._headlengt = res;
+                    this._headLength = res;
                 }
                 else
                 {
@@ -494,26 +497,26 @@ namespace ZYSocket.Share
                 return false;
             try
             {
-                CheckHeadLengt();
+                CheckHeadLength();
             }
             catch (ArgumentOutOfRangeException)
             {
                 this.Flush();
 
             }
-            if (_headlengt == -1)
+            if (_headLength == -1)
                 return false;
-            if ((_pw + _headlengt) <= _position)
+            if ((_pw + _headLength) <= _position)
             {
-                data = new byte[_headlengt];
+                data = new byte[_headLength];
                 Buffer.BlockCopy(Datas, _pw, data, 0, data.Length);
-                _pw += _headlengt;
-                _headlengt = -1;
+                _pw += _headLength;
+                _headLength = -1;
                 if (_pw >= _length)
                 {
-                    if (Datas.Length > _SpLengt)
+                    if (Datas.Length > _SpLength)
                     {
-                        _SpLengt = Datas.Length;
+                        _SpLength = Datas.Length;
                         SetSplitPostion(_position);
                     }
                     else

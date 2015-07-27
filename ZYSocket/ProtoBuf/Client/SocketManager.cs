@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ZYSocket.share;
+using ZYSocket.Share;
 using ZYSocket.ClientA;
 using System.Net.Sockets;
 
