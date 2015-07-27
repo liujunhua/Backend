@@ -22,13 +22,13 @@ namespace Client
         /// <summary>
         /// 登入对话框
         /// </summary>
-        LogOn logon;
+        Login logon;
         byte[] keys = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };//Demo3.0
         public FormClient()
         {
             if (SocketManager.client.ConnectionTo(RConfig.ReadString("Host"), RConfig.ReadInt("Port"))) //连接到服务器
             {
-                logon = new LogOn();
+                logon = new Login();
                 logon.ShowDialog(); //显示登入界面
                 if (!logon.Logins) //如果登入界面关闭那么检查是否登入成功如果没有登入成功 则关闭程序
                 {
