@@ -14,7 +14,7 @@ namespace Client
     /// <summary>
     /// 登入界面
     /// </summary>
-    public partial class LogOn : Form
+    public partial class Login : Form
     {
         /// <summary>
         /// 登入成功为TRUE
@@ -22,7 +22,7 @@ namespace Client
         public bool Logins { get; set; }
         byte[] keys = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };//Demo3.0
 
-        public LogOn()
+        public Login()
         {
             //注册数据包输入事件
             SocketManager.DataInput += new ZYSocket.ClientA.DataOn(SocketManager_DataInput);
