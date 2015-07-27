@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -53,10 +54,6 @@
     <ProjectReference Include="..\..\ZYSocket\ZYSocketClientA\ZYSocketClientA.csproj">
       <Project>{22612b8f-73ce-4dfc-9c65-2de6a1558004}</Project>
       <Name>ZYSocketClientA</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ZYSocket\ZYSocketFrame\ZYSocketFrame.csproj">
-      <Project>{69fdf1fc-9018-4a1d-a739-39a7230c25d2}</Project>
-      <Name>ZYSocketFrame</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ZYSocket\ZYSocketShare\ZYSocketShare.csproj">
       <Project>{462cc05c-ae20-448c-8522-d724b858b685}</Project>
