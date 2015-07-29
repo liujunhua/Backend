@@ -42,10 +42,10 @@ namespace ZYSocket.RPC.Server
 
             ReadBytesV2 read = new ReadBytesV2(data);
 
-            int lengt;
+            int length;
             int cmd;
 
-            if (read.ReadInt32(out lengt) && read.Length == lengt && read.ReadInt32(out cmd))
+            if (read.ReadInt32(out length) && read.Length == length && read.ReadInt32(out cmd))
             {
                 switch (cmd)
                 {
