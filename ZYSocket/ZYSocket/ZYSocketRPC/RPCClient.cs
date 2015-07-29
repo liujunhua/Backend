@@ -45,7 +45,7 @@ namespace ZYSocket.RPC.Client
 
         public RPCClient()
         {
-            Timeout = 8000;
+            Timeout = 80000;
         }
 
         void Client_MessageInput(string message)

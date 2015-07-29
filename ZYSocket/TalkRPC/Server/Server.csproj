@@ -34,9 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MsgPack">
-      <HintPath>..\..\..\北风之神SOCKET框架(ZYSocket)DLL\RPC\MsgPack.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -55,6 +52,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\msgpack-cli-0.5.3\msgpack-cli-0.5.3\src\MsgPack.Net40\MsgPack.Net40.csproj">
+      <Project>{d45d4cbe-afe7-4e2a-945d-47aed564c39d}</Project>
+      <Name>MsgPack.Net40</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ZYSocket\ZYSocketFrame\ZYSocketFrame.csproj">
       <Project>{69fdf1fc-9018-4a1d-a739-39a7230c25d2}</Project>
       <Name>ZYSocketFrame</Name>

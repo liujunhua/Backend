@@ -210,7 +210,7 @@ namespace TestServer
                             {
                                 if (temp != null)
                                 {
-                                    Console.WriteLine("Id:{0}\r\n Mn:{1} \r\n Guid:{2} \r\n DataLength:{3} \r\n\r\n", temp.Id, temp.Message, temp.guidList, read.Length);
+                                    Console.WriteLine("Id:{0}\r\n Mn:{1} \r\n Guid:{2} \r\n DataLength:{3} \r\n\r\n", temp.Id, temp.Message, temp.GuidList, read.Length);
                                 }
                             }
                             break;

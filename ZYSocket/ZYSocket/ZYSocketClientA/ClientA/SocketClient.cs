@@ -193,6 +193,7 @@ namespace ZYSocket.ClientA
         public virtual void SendTo(byte[] data)
         {
             SocketAsyncEventArgs e = new SocketAsyncEventArgs();
+            e.SendPacketsSendSize = 4096;
             e.SetBuffer(data, 0, data.Length);
             clientSocket.SendAsync(e);
         }

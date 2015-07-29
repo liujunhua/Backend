@@ -19,7 +19,7 @@ namespace TestClient
         {
             client.DataOn += new DataOn(Client_DataOn); //数据包进入事件
             client.Disconnection += new ExceptionDisconnection(Client_Disconnection); //数据包断开事件
-            if (client.ConnectionTo(RConfig.ReadString("Host"), RConfig.ReadInt("Port"))) //使用同步连接到服务器，一步就用Begin开头的那个
+            if (client.ConnectionTo(RConfig.ReadString("Host"), RConfig.ReadInt("Port"))) //使用同步连接到服务器，异步就用Begin开头的那个
             {
                 while (true)
                 {
@@ -27,12 +27,13 @@ namespace TestClient
                     TestClass.PPo temp = new TestClass.PPo();
                     temp.Id = 1;
                     temp.Message = "通过对象通讯";
-                    temp.guidList = new List<Guid>();
-                    for (int i = 0; i < 100; i++)
+                    temp.GuidList = new List<Guid>();
+                    for (int i = 0; i < 2; i++)
                     {
-                        temp.guidList.Add(Guid.NewGuid());
+                        temp.GuidList.Add(Guid.NewGuid());
                     }
                     client.SendTo(BufferFormat.FormatFCA(temp));  //将一个PPO对象发送出去
+
                     // Console.ReadLine();
 
                     //BufferFormat buffmat = new BufferFormat(1001);
@@ -42,6 +43,7 @@ namespace TestClient
                     //client.SendTo(buffmat.Finish()); //用组合数据包模拟PPO对象
                     // Console.ReadLine();
 
+                    // Console.ReadLine();
                     //BufferFormat buffmat2 = new BufferFormat(1002);
                     //buffmat2.AddItem(3);
                     //buffmat2.AddItem("通过组合数据包通讯 all buff");

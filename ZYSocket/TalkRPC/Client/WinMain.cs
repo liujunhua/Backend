@@ -100,13 +100,12 @@ namespace Client
                 }));
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnSend_Click(object sender, EventArgs e)
         {
             if (!client.Call<TalkService, bool>(p => p.MessageTalk(this.cboUser.Text, this.txtMessage.Text)))
             {
                 this.rtbRecord.AppendText("发送失败");
             }
-
         }
 
     }

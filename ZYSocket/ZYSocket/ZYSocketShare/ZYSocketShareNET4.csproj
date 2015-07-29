@@ -31,14 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MsgPack">
-      <HintPath>..\..\msgpack-cli-0.5.3\msgpack-cli-0.5.3\src\MsgPack.Net40\bin\Debug\MsgPack.dll</HintPath>
-    </Reference>
     <Reference Include="Polenter.SharpSerializer">
-      <HintPath>..\..\sharpSerializerSolution\SharpSerializer.Library\bin\Debug\Polenter.SharpSerializer.dll</HintPath>
+      <HintPath>..\..\SocketDLL\Polenter.SharpSerializer.dll</HintPath>
     </Reference>
     <Reference Include="protobuf-net">
-      <HintPath>..\..\北风之神SOCKET框架(ZYSocket)DLL\protobuf-net.dll</HintPath>
+      <HintPath>..\..\SocketDLL\protobuf-net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -64,6 +61,12 @@
     <Compile Include="Share\ReadBytesV2.cs" />
     <Compile Include="Share\ZYNetBufferReadStream.cs" />
     <Compile Include="Share\ZYNetBufferReadStreamV2.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\msgpack-cli-0.5.3\msgpack-cli-0.5.3\src\MsgPack.Net40\MsgPack.Net40.csproj">
+      <Project>{d45d4cbe-afe7-4e2a-945d-47aed564c39d}</Project>
+      <Name>MsgPack.Net40</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

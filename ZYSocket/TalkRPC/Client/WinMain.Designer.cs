@@ -77,7 +77,7 @@
             this.btnSend.TabIndex = 2;
             this.btnSend.Text = "发送";
             this.btnSend.UseVisualStyleBackColor = true;
-            this.btnSend.Click += new System.EventHandler(this.button1_Click);
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
             // cboUser
             // 

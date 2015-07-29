@@ -16,7 +16,7 @@ namespace TestClass
     {
         public int Id { get; set; }
         public string Message { get; set; }
-        public List<Guid> guidList { get; set; }//demo1.3 guid修改为guidList
+        public List<Guid> GuidList { get; set; }//demo1.3 guid修改为guidList
     }
 
     #region Demo1.3 修改PPo 增加 PPo2

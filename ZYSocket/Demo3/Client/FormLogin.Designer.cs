@@ -43,7 +43,7 @@
             this.btnLogin.TabIndex = 0;
             this.btnLogin.Text = "登  入";
             this.btnLogin.UseVisualStyleBackColor = true;
-            this.btnLogin.Click += new System.EventHandler(this.button1_Click);
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // label1
             // 

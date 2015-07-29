@@ -73,7 +73,7 @@ namespace Client
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
         {
             Login temp = new Login() //发送一个登入数据包
             {

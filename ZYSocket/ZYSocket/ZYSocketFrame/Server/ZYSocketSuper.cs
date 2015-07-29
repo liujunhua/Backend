@@ -347,13 +347,17 @@ namespace ZYSocket.Server
             bufferManager = new BufferManager(MaxConnectionCount * MaxBufferSize, MaxBufferSize);
             bufferManager.Init();
 
+            #region 创建Socket异步对象池
             SocketAsynPool = new SocketAsyncEventArgsPool(MaxConnectionCount);
             for (int i = 0; i < MaxConnectionCount; i++)
             {
                 SocketAsyncEventArgs socketasyn = new SocketAsyncEventArgs();
+
+                //步骤二：将该上下文对象的属性设置为要执行的操作（例如，完成回调方法、数据缓冲区、缓冲区偏移量以及要传输的最大数据量）。
                 socketasyn.Completed += new EventHandler<SocketAsyncEventArgs>(Asyn_Completed);
                 SocketAsynPool.Push(socketasyn);
             }
+            #endregion
 
             #region 第六步：建立连接
             this.Accept();
@@ -376,8 +380,11 @@ namespace ZYSocket.Server
         {
             if (SocketAsynPool.Count > 0)
             {
+                //使用SocketAsyncEventArgs类执行异步套接字操作的模式包含以下步骤：
+                //步骤一：分配一个新的 SocketAsyncEventArgs 上下文对象，或者从异步对象池中获取一个空闲的此类对象。
                 SocketAsyncEventArgs sockasyn = SocketAsynPool.Pop();
                 //开始一个异步操作来接受一个传入的连接操作, //在链接过来的时候，如果IO没有挂起，则AcceptAsync为False，表明同步完成。
+                //步骤三：调用适当的套接字方法 (xxxAsync) 以启动异步操作。
                 if (!Sock.AcceptAsync(sockasyn))
                 {
                     BeginAccept(sockasyn);
@@ -437,7 +444,6 @@ namespace ZYSocket.Server
             {
                 byte[] data = new byte[e.BytesTransferred];
                 Buffer.BlockCopy(e.Buffer, e.Offset, data, 0, data.Length);
-                //
                 if (this.BinaryInput != null)
                 {
                     this.BinaryInput(data, e);
@@ -493,7 +499,7 @@ namespace ZYSocket.Server
                 case SocketAsyncOperation.Receive:
                     #region 第七步：从客户端接受信息
                     BeginReceive(e);
-                    #endregion  
+                    #endregion
                     break;
             }
         }
