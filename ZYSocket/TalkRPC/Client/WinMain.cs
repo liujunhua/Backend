@@ -31,7 +31,7 @@ namespace Client
                 {
                     client.Disconn += new ZYSocket.ClientB.ClientMessageInputHandler(client_Disconn);
                     client.DataOn += new ZYSocket.ClientB.ClientBinaryInputHandler(client_DataOn);
-                    string msg = null; ;
+                    string msg = null;
                     if (client.Call<TalkService, bool>(p => p.LogOn(login.LoginName, out msg)))
                     {
                         this.rtbRecord.AppendText(msg + "\r\n");
@@ -61,18 +61,18 @@ namespace Client
         void client_DataOn(byte[] data)
         {
             ReadBytesV2 read = new ReadBytesV2(data);
-            int lengt;
+            int length;
             int cmd;
-            if (read.ReadInt32(out lengt) && lengt == read.Length && read.ReadInt32(out cmd))
+            if (read.ReadInt32(out length) && length == read.Length && read.ReadInt32(out cmd))
             {
                 switch (cmd)
                 {
                     case 1:
                         {
                             this.BeginInvoke(new EventHandler((a, b) =>
-                                {
-                                    GetAllUser();
-                                }));
+                            {
+                                GetAllUser();
+                            }));
                         }
                         break;
                     case 2:
@@ -94,10 +94,10 @@ namespace Client
         void client_Disconn(string message)
         {
             this.BeginInvoke(new EventHandler((a, b) =>
-                {
-                    MessageBox.Show(message);
-                    this.Close();
-                }));
+            {
+                MessageBox.Show(message);
+                this.Close();
+            }));
         }
 
         private void btnSend_Click(object sender, EventArgs e)

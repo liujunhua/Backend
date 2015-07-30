@@ -24,7 +24,10 @@ namespace Server
             server.Start(); //启动服务器
 
             while (true)
+            {
                 Console.ReadLine();
+            }
+
         }
 
         static void MessageInputHandler(string message, SocketAsyncEventArgs socketAsync, int erorr)
@@ -62,7 +65,7 @@ namespace Server
         {
 
             try
-            {               
+            {
                 UserInfo user = socketAsync.UserToken as UserInfo; //最新的数据包整合类
                 user.Stream.Write(data);
                 byte[] datax;
@@ -83,7 +86,9 @@ namespace Server
             if (service.CallModule(data, e, out returnValue))
             {
                 if (returnValue != null)
+                {
                     server.SendData(e.AcceptSocket, BufferFormatV2.FormatFCA(returnValue));
+                }
             }
             else
             {

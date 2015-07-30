@@ -14,13 +14,12 @@ namespace ZYSocket.Share
 {
     /// <summary>
     /// 数据包组合类
-    /// 功能描述:保持数据包完整性。
-    /// （通过互联网发送数据包，实际上是将一个较大的包拆分成诺干小包，此类的功能就是讲诺干小包重新组合成完整的数据包）
+    /// 功能描述:保持数据包完整性（通过互联网发送数据包，实际上是将一个较大的包拆分成诺干小包，此类的功能就是讲诺干小包重新组合成完整的数据包）。
     /// 此类是线程安全的
     /// </summary>
     public class BufferList
     {
-        public object locklist = new object();
+        public object lockList = new object();
 
         /// <summary>
         /// 数据包列表
@@ -29,7 +28,7 @@ namespace ZYSocket.Share
 
         private int current;
 
-        private int lengt;
+        private int length;
 
         private int Vlent;
 
@@ -45,7 +44,7 @@ namespace ZYSocket.Share
         public BufferList(int maxSize)
         {
             MaxSize = maxSize;
-            lengt = -1;
+            length = -1;
             Vlent = 0;
             ByteList = new List<byte>();
 
@@ -53,7 +52,7 @@ namespace ZYSocket.Share
 
         public void Reset()
         {
-            Interlocked.Exchange(ref lengt, -1);
+            Interlocked.Exchange(ref length, -1);
             Interlocked.Exchange(ref Vlent, 0);
             Interlocked.Exchange(ref current, 0);
             ByteList.Clear();
@@ -61,13 +60,13 @@ namespace ZYSocket.Share
 
         public bool InsertByteArray(byte[] Data, int ml, out List<byte[]> datax)
         {
-            lock (locklist)
+            lock (lockList)
             {
                 datax = new List<byte[]>();
                 ByteList.AddRange(Data);
                 Interlocked.Add(ref Vlent, Data.Length);
 
-                if (lengt == -1 && Vlent > ml)
+                if (length == -1 && Vlent > ml)
                 {
                     int res = 0;
                     for (int i = 0; i < ml; i++)
@@ -88,14 +87,14 @@ namespace ZYSocket.Share
 
                         return false;
                     }
-                    Interlocked.Exchange(ref lengt, res);
+                    Interlocked.Exchange(ref length, res);
                 }
 
 
-                if ((Vlent - current) >= lengt)
+                if ((Vlent - current) >= length)
                 {
-                    int lengx = lengt;
-                    Interlocked.Exchange(ref lengt, -1);
+                    int lengx = length;
+                    Interlocked.Exchange(ref length, -1);
 
                     byte[] data = new byte[lengx];
                     ByteList.CopyTo(current, data, 0, lengx);

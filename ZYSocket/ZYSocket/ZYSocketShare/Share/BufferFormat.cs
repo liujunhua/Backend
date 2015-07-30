@@ -49,7 +49,6 @@ namespace ZYSocket.Share
 #endif
         }
 
-
         protected List<byte> bufferList;
 
         /// <summary>
@@ -67,7 +66,6 @@ namespace ZYSocket.Share
         /// <param name="dataExtra">数据包在格式化完毕后回调方法。（例如加密，压缩等）</param>
         public BufferFormat(int buffType, FormatDataCompletedEventHandler formatDataCompleted)
         {
-
             bufferList = new List<byte>();
             bufferList.AddRange(GetSocketBytes(buffType));
             Encode = Encoding.Unicode;
@@ -82,7 +80,6 @@ namespace ZYSocket.Share
         /// <param name="buffType">包类型</param>
         public BufferFormat(int buffType)
         {
-
             bufferList = new List<byte>();
             bufferList.AddRange(GetSocketBytes(buffType));
             Encode = Encoding.Unicode;
@@ -97,7 +94,9 @@ namespace ZYSocket.Share
         public virtual void AddItem(bool data)
         {
             if (isFinish)
+            {
                 throw new ObjectDisposedException("BufferFormat", "无法使用已经调用了 Finish 方法的BufferFormat对象");
+            }
             bufferList.AddRange(GetSocketBytes(data));
         }
 
@@ -111,8 +110,9 @@ namespace ZYSocket.Share
         public virtual void AddItem(byte data)
         {
             if (isFinish)
+            {
                 throw new ObjectDisposedException("BufferFormat", "无法使用已经调用了 Finish 方法的BufferFormat对象");
-
+            }
             bufferList.Add(data);
         }
 
@@ -141,8 +141,9 @@ namespace ZYSocket.Share
         public virtual void AddItem(Int32 data)
         {
             if (isFinish)
+            {
                 throw new ObjectDisposedException("BufferFormat", "无法使用已经调用了 Finish 方法的BufferFormat对象");
-
+            }
             bufferList.AddRange(GetSocketBytes(data));
         }
 
@@ -154,8 +155,9 @@ namespace ZYSocket.Share
         public virtual void AddItem(UInt32 data)
         {
             if (isFinish)
+            {
                 throw new ObjectDisposedException("BufferFormat", "无法使用已经调用了 Finish 方法的BufferFormat对象");
-
+            }
             bufferList.AddRange(GetSocketBytes(data));
         }
 
@@ -274,8 +276,9 @@ namespace ZYSocket.Share
         public virtual void AddItem(object obj)
         {
             if (isFinish)
+            {
                 throw new ObjectDisposedException("BufferFormat", "无法使用已经调用了 Finish 方法的BufferFormat对象");
-
+            }
             byte[] data = SerializeObject(obj);
             bufferList.AddRange(GetSocketBytes(data.Length));
             bufferList.AddRange(data);

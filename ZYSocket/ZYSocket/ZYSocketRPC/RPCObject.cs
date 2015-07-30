@@ -15,20 +15,19 @@ namespace ZYSocket.RPC
         }
 
         protected virtual void Send(SocketAsyncEventArgs socketasyn, byte[] data)
-        {        
-
+        {
             if (socketasyn != null)
             {
                 Socket sock = socketasyn.AcceptSocket;
-
                 try
                 {
                     if (sock != null && sock.Connected)
+                    {
                         sock.BeginSend(data, 0, data.Length, SocketFlags.None, AsynCallBack, sock);
+                    }
                 }
                 catch (SocketException)
                 {
-
                 }
             }
         }
@@ -38,7 +37,6 @@ namespace ZYSocket.RPC
             try
             {
                 Socket sock = result.AsyncState as Socket;
-
                 if (sock != null)
                 {
                     sock.EndSend(result);
@@ -46,7 +44,6 @@ namespace ZYSocket.RPC
             }
             catch
             {
-
             }
         }
 
@@ -54,5 +51,6 @@ namespace ZYSocket.RPC
         {
             return;
         }
+
     }
 }

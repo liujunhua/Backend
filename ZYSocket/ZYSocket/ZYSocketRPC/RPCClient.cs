@@ -52,7 +52,9 @@ namespace ZYSocket.RPC.Client
         {
             IsConnection = false;
             if (Disconn != null)
+            {
                 Disconn(message);
+            }
         }
 
         void Client_BinaryInput(byte[] data)
@@ -133,9 +135,9 @@ namespace ZYSocket.RPC.Client
             }
         }
 
-        public Result Call<Mode, Result>(Expression<Func<Mode, Result>> action)
+        public TResult Call<T, TResult>(Expression<Func<T, TResult>> action)
         {
-
+            //表示对静态方法或实例方法的调用。
             MethodCallExpression body = action.Body as MethodCallExpression;
             if (body != null && IsConnection)
             {
@@ -187,7 +189,7 @@ namespace ZYSocket.RPC.Client
                         ZYClient_Result_Return returnx = ResRetrunDiy[call.Id].ReturnValue;
                         Type type = Type.GetType(returnx.ReturnType);
                         if (type == null)
-                            type = typeof(Result);
+                            type = typeof(TResult);
                         object returnobj = MsgPack.Serialization.SerializationContext.Default.GetSerializer(type).UnpackSingleObject(returnx.Return);
                         if (returnx.Arguments != null && returnx.Arguments.Count > 0 && ArgType.Count == returnx.Arguments.Count)
                         {
@@ -208,15 +210,15 @@ namespace ZYSocket.RPC.Client
                                 }
                             }
                         }
-                        return (Result)returnobj;
+                        return (TResult)returnobj;
                     }
                     ResRetrunDiy.TryRemove(call.Id, out var);
                 }
             }
-            return default(Result);
+            return default(TResult);
         }
 
-        public void Call<Mode>(Expression<Action<Mode>> action)
+        public void Call<T>(Expression<Action<T>> action)
         {
             MethodCallExpression body = action.Body as MethodCallExpression;
             if (body != null && IsConnection)

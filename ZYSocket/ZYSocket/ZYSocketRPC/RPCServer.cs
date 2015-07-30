@@ -26,9 +26,7 @@ namespace ZYSocket.RPC.Server
         public void RegModule(object o)
         {
             Type type = o.GetType();
-
             ModuleDiy.AddOrUpdate(type.FullName, o, (a, b) => o);
-
         }
 
         /// <summary>
@@ -39,30 +37,23 @@ namespace ZYSocket.RPC.Server
         public bool CallModule(byte[] data, SocketAsyncEventArgs e, out ZYClient_Result_Return returnRes)
         {
             returnRes = null;
-
             ReadBytesV2 read = new ReadBytesV2(data);
-
             int length;
             int cmd;
-
             if (read.ReadInt32(out length) && read.Length == length && read.ReadInt32(out cmd))
             {
                 switch (cmd)
                 {
                     case 1001000:
                         {
-
                             ZYClientCall tmp;
-
                             if (read.ReadObject<ZYClientCall>(out tmp))
                             {
                                 object returnValue;
-
+                                //提供与执行代码路径一起传送的属性集。
                                 CallContext.SetData("Current", e);
-
                                 if (RunModule(tmp, out returnValue))
                                 {
-
                                     if (tmp.IsNeedReturn)
                                     {
                                         ZYClient_Result_Return var = new ZYClient_Result_Return()
@@ -71,27 +62,21 @@ namespace ZYSocket.RPC.Server
                                             CallTime = tmp.CallTime,
                                             Arguments = tmp.Arguments
                                         };
-
                                         if (returnValue != null)
                                         {
                                             var.Return = MsgPack.Serialization.SerializationContext.Default.GetSerializer(returnValue.GetType()).PackSingleObject(returnValue);
                                             var.ReturnType = returnValue.GetType().FullName;
                                         }
-
                                         returnRes = var;
                                     }
-
                                     return true;
                                 }
                             }
                         }
                         break;
-
                 }
             }
-
             return false;
-
         }
 
         public void Disconnect(SocketAsyncEventArgs e)
@@ -99,20 +84,22 @@ namespace ZYSocket.RPC.Server
             foreach (var item in ModuleDiy.Values)
             {
                 Type type = item.GetType();
-
                 if (type.BaseType == typeof(RPCObject))
                 {
                     type.GetMethod("ClientDisconnect").Invoke(item, new[] { e });
-
                 }
-
             }
         }
 
+        /// <summary>
+        /// 运行模块
+        /// </summary>
+        /// <param name="tmp"></param>
+        /// <param name="returnValue"></param>
+        /// <returns></returns>
         protected bool RunModule(ZYClientCall tmp, out object returnValue)
         {
             returnValue = null;
-
             if (ModuleDiy.ContainsKey(tmp.CallModule))
             {
                 object o = ModuleDiy[tmp.CallModule];
@@ -150,7 +137,6 @@ namespace ZYSocket.RPC.Server
                                         break;
                                     }
                                 }
-
                                 if (isCheck)
                                 {
                                     returnValue = item.Invoke(o, arguments);

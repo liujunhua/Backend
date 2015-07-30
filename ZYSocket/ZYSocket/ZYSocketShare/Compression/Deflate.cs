@@ -11,6 +11,7 @@ namespace ZYSocket.Compression
     /// </summary>
     public static class Deflate
     {
+
         /// <summary>
         /// 解压缩
         /// </summary>

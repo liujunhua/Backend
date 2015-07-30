@@ -17,7 +17,7 @@ namespace Server
         public UserInfo(System.Net.Sockets.SocketAsyncEventArgs asyn)
         {
             this.Asyn = asyn;
-            Stream = new ZYNetBufferReadStreamV2(1024 * 1024 * 4);
+            this.Stream = new ZYNetBufferReadStreamV2(1024 * 1024 * 4);
         }
     }
 
