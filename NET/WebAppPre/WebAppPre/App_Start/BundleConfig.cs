@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace WebApp5Pre
+namespace WebAppPre
 {
     public class BundleConfig
     {
